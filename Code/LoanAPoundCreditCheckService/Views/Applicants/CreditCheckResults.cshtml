@@ -1,0 +1,70 @@
+﻿@model LoanAPoundCreditCheckService.Models.ApplicantCreditCheckResults
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreditCheckResults</title>
+
+     <style>
+    table, td, th {    
+        border: 1px solid;
+        text-align: center;
+        padding: 3px;
+    }
+    th {    
+        border: 1px solid;
+        background-color:lightgrey;
+        text-align: center;
+        padding: 3px;
+    }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend style="font-weight:bold;font-size:large">Applicant Credit Check Results</legend>
+          
+            <br />
+            <div class="display-label">
+                 <span style="font-weight:bold">Applicant Name : </span>
+                @Html.DisplayFor(model => model.ApplicantName)
+            </div>
+        <br />
+        <span style="font-weight:bold">Credit Check Providers:- </span>
+        
+             <table border="1px">
+                 <tr>
+                     <th>
+                         Credit Check Provider Name
+                     </th>
+                     <th>
+                         Credit Score
+                     </th>
+                 </tr>
+                  @foreach (var creditScore in Model.CreditScoresByCreditCheckProvider)
+                  {
+                     <tr>
+                         <td>
+                             <span style="font-weight:bold">@Html.DisplayName(creditScore.Key)</span>
+                         </td>
+                         <td>
+                             @Html.DisplayFor(model => creditScore.Value)
+                         </td>
+                     </tr>
+                  }
+             </table>
+       
+
+
+    </fieldset>
+    <p>
+        @Html.ActionLink("Back to Applicant", "Details", new { id=Model.ApplicantID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

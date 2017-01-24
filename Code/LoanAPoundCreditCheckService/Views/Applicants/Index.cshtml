@@ -1,0 +1,82 @@
+﻿@model IEnumerable<LoanAPoundCreditCheckService.Models.Applicant>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <style>
+    table, td, th {    
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 3px;
+    }
+    </style>
+
+</head>
+<body>
+ <span style="font-weight:bold;text-align:center">List of Applicants:</span>
+    <br /><br />
+    <table border="1px" >
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicantID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicantFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicantLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnnualSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NI_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicantID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicantFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicantLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnualSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NI_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Details & Check Credit", "Details", new { id=item.ApplicantID  }) |
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

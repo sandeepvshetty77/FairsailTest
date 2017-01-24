@@ -1,0 +1,88 @@
+﻿@model LoanAPoundCreditCheckService.Models.ApplicantCreditCheckView
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend style="font-weight:bold;font-size:large">Applicant</legend>
+        <br /> 
+        
+            <div class="display-label" >
+                 <span style="font-weight:bold">@Html.DisplayNameFor(model => model.applicant.ApplicantFirstName) : </span>
+                @Html.DisplayFor(model => model.applicant.ApplicantFirstName)
+            </div>
+            <br />
+    
+            <div class="display-label">
+                 <span style="font-weight:bold">@Html.DisplayNameFor(model => model.applicant.ApplicantLastName) : </span>
+                @Html.DisplayFor(model => model.applicant.ApplicantLastName)
+            </div>
+            <br />
+        
+            <div class="display-label">
+                 <span style="font-weight:bold">@Html.DisplayNameFor(model => model.applicant.AnnualSalary) : </span>
+                @Html.DisplayFor(model => model.applicant.AnnualSalary)
+            </div>
+            <br />
+    
+            <div class="display-label">
+                 <span style="font-weight:bold">@Html.DisplayNameFor(model => model.applicant.NI_Number) : </span>
+                @Html.DisplayFor(model => model.applicant.NI_Number)
+            </div>
+            <br />
+    
+            <div class="display-label">
+                 <span style="font-weight:bold">@Html.DisplayNameFor(model => model.applicant.Address) : </span>
+                @Html.DisplayFor(model => model.applicant.Address)
+            </div>
+            <br />
+    
+            <div class="display-label">
+                 <span style="font-weight:bold">@Html.DisplayNameFor(model => model.applicant.Email) : </span>
+                @Html.DisplayFor(model => model.applicant.Email)
+            </div>
+            <br />
+
+             <fieldset>
+
+            <div class="display-label" >
+                <span style="background-color: grey; color: white; font-weight: bold; padding:5px;position:absolute;text-align:center">Check Credit: </span>
+                <br /> <br />
+                Credit Check Providers: (Select one or more)
+                <br />
+                 @using (Html.BeginForm())
+                 {
+                     @Html.ListBoxFor(m => m.SelectedCreditCheckProvider, Model.CreditCheckProviders, new { size = 5, style = "width: 500px" })                   
+                     <input type="submit" value="Get Credit Score"/> 
+                 }
+                 @if (@ViewBag.Message != null)
+                 {
+                  <span style="background-color: red; color: white; font-weight: bold; padding:5px;position:absolute;text-align:center">
+                      @ViewBag.Message   
+                  </span>
+                 }
+                <br />
+                
+            
+            </div>
+          
+        </fieldset>
+
+
+    </fieldset>
+        
+    
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

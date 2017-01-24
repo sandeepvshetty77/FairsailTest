@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/CreditCheckService" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=|DataDirectory|\LoanAPound.sdf" />
+  <setParameter name="LoanAPoundDataEntities-Web.config Connection String" value="metadata=res://*/Models.CreditCheckSrvDataAccessModel.csdl|res://*/Models.CreditCheckSrvDataAccessModel.ssdl|res://*/Models.CreditCheckSrvDataAccessModel.msl;provider=System.Data.SqlServerCe.4.0;provider connection string=&quot;data source=|DataDirectory|\LoanAPound.sdf&quot;" />
+</parameters>

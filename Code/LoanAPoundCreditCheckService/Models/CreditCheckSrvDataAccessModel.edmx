@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LoanAPoundModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LoanAPoundModelStoreContainer">
+          <EntitySet Name="Applicants" EntityType="LoanAPoundModel.Store.Applicants" store:Type="Tables" />
+          <EntitySet Name="ApplicantCreditCheckScores" EntityType="LoanAPoundModel.Store.ApplicantCreditCheckScores" store:Type="Tables" />
+          <EntitySet Name="Applications" EntityType="LoanAPoundModel.Store.Applications" store:Type="Tables" />
+          <EntitySet Name="CreditCheckProviders" EntityType="LoanAPoundModel.Store.CreditCheckProviders" store:Type="Tables" />
+          <EntitySet Name="Loans" EntityType="LoanAPoundModel.Store.Loans" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="LoanAPoundModel.Store.Roles" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="LoanAPoundModel.Store.Users" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Applicants">
+          <Key>
+            <PropertyRef Name="ApplicantID" />
+          </Key>
+          <Property Name="ApplicantID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicantFirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ApplicantLastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnnualSalary" Type="float" Nullable="false" />
+          <Property Name="NI_Number" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ApplicantCreditCheckScores">
+          <Key>
+            <PropertyRef Name="CreditCheckTransactionID" />
+          </Key>
+          <Property Name="CreditCheckTransactionID" Type="int" Nullable="false" />
+          <Property Name="ApplicantID" Type="int" />
+          <Property Name="CreditCheckProviderID" Type="int" />
+          <Property Name="CreditScore" Type="int" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="int" Nullable="false" />
+          <Property Name="ApplicantID" Type="int" Nullable="false" />
+          <Property Name="DepositOffered" Type="float" />
+          <Property Name="PropertyValue" Type="float" />
+          <Property Name="Term" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="CreditCheckProviders">
+          <Key>
+            <PropertyRef Name="CreditCheckProviderID" />
+          </Key>
+          <Property Name="CreditCheckProviderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Loans">
+          <Key>
+            <PropertyRef Name="LoanID" />
+          </Key>
+          <Property Name="LoanID" Type="int" Nullable="false" />
+          <Property Name="LoanProvider" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Term" Type="int" />
+          <Property Name="BorrowingRate" Type="float" />
+          <Property Name="MaxLoanAmount" Type="float" />
+          <Property Name="LoanType" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LoanAPoundModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LoanAPoundDataEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Applicants" EntityType="LoanAPoundModel.Applicant" />
+          <EntitySet Name="ApplicantCreditCheckScores" EntityType="LoanAPoundModel.ApplicantCreditCheckScore" />
+          <EntitySet Name="Applications" EntityType="LoanAPoundModel.Application" />
+          <EntitySet Name="CreditCheckProviders" EntityType="LoanAPoundModel.CreditCheckProvider" />
+          <EntitySet Name="Loans" EntityType="LoanAPoundModel.Loan" />
+          <EntitySet Name="Roles" EntityType="LoanAPoundModel.Role" />
+          <EntitySet Name="Users" EntityType="LoanAPoundModel.User" />
+        </EntityContainer>
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="ApplicantID" />
+          </Key>
+          <Property Name="ApplicantID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicantFirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicantLastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AnnualSalary" Type="Double" Nullable="false" />
+          <Property Name="NI_Number" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ApplicantCreditCheckScore">
+          <Key>
+            <PropertyRef Name="CreditCheckTransactionID" />
+          </Key>
+          <Property Name="CreditCheckTransactionID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantID" Type="Int32" />
+          <Property Name="CreditCheckProviderID" Type="Int32" />
+          <Property Name="CreditScore" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantID" Type="Int32" Nullable="false" />
+          <Property Name="DepositOffered" Type="Double" />
+          <Property Name="PropertyValue" Type="Double" />
+          <Property Name="Term" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CreditCheckProvider">
+          <Key>
+            <PropertyRef Name="CreditCheckProviderID" />
+          </Key>
+          <Property Name="CreditCheckProviderID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Loan">
+          <Key>
+            <PropertyRef Name="LoanID" />
+          </Key>
+          <Property Name="LoanID" Type="Int32" Nullable="false" />
+          <Property Name="LoanProvider" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Term" Type="Int32" />
+          <Property Name="BorrowingRate" Type="Double" />
+          <Property Name="MaxLoanAmount" Type="Double" />
+          <Property Name="LoanType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Role1" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LoanAPoundModelStoreContainer" CdmEntityContainer="LoanAPoundDataEntities">
+          <EntitySetMapping Name="Applicants">
+            <EntityTypeMapping TypeName="LoanAPoundModel.Applicant">
+              <MappingFragment StoreEntitySet="Applicants">
+                <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+                <ScalarProperty Name="ApplicantFirstName" ColumnName="ApplicantFirstName" />
+                <ScalarProperty Name="ApplicantLastName" ColumnName="ApplicantLastName" />
+                <ScalarProperty Name="AnnualSalary" ColumnName="AnnualSalary" />
+                <ScalarProperty Name="NI_Number" ColumnName="NI_Number" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicantCreditCheckScores">
+            <EntityTypeMapping TypeName="LoanAPoundModel.ApplicantCreditCheckScore">
+              <MappingFragment StoreEntitySet="ApplicantCreditCheckScores">
+                <ScalarProperty Name="CreditCheckTransactionID" ColumnName="CreditCheckTransactionID" />
+                <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+                <ScalarProperty Name="CreditCheckProviderID" ColumnName="CreditCheckProviderID" />
+                <ScalarProperty Name="CreditScore" ColumnName="CreditScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="LoanAPoundModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+                <ScalarProperty Name="DepositOffered" ColumnName="DepositOffered" />
+                <ScalarProperty Name="PropertyValue" ColumnName="PropertyValue" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCheckProviders">
+            <EntityTypeMapping TypeName="LoanAPoundModel.CreditCheckProvider">
+              <MappingFragment StoreEntitySet="CreditCheckProviders">
+                <ScalarProperty Name="CreditCheckProviderID" ColumnName="CreditCheckProviderID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loans">
+            <EntityTypeMapping TypeName="LoanAPoundModel.Loan">
+              <MappingFragment StoreEntitySet="Loans">
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+                <ScalarProperty Name="LoanProvider" ColumnName="LoanProvider" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="BorrowingRate" ColumnName="BorrowingRate" />
+                <ScalarProperty Name="MaxLoanAmount" ColumnName="MaxLoanAmount" />
+                <ScalarProperty Name="LoanType" ColumnName="LoanType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="LoanAPoundModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LoanAPoundModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

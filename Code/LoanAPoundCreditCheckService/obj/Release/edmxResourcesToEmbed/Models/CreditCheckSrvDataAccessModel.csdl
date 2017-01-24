@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LoanAPoundModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LoanAPoundDataEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Applicants" EntityType="LoanAPoundModel.Applicant" />
+    <EntitySet Name="ApplicantCreditCheckScores" EntityType="LoanAPoundModel.ApplicantCreditCheckScore" />
+    <EntitySet Name="Applications" EntityType="LoanAPoundModel.Application" />
+    <EntitySet Name="CreditCheckProviders" EntityType="LoanAPoundModel.CreditCheckProvider" />
+    <EntitySet Name="Loans" EntityType="LoanAPoundModel.Loan" />
+    <EntitySet Name="Roles" EntityType="LoanAPoundModel.Role" />
+    <EntitySet Name="Users" EntityType="LoanAPoundModel.User" />
+  </EntityContainer>
+  <EntityType Name="Applicant">
+    <Key>
+      <PropertyRef Name="ApplicantID" />
+    </Key>
+    <Property Name="ApplicantID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicantFirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ApplicantLastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AnnualSalary" Type="Double" Nullable="false" />
+    <Property Name="NI_Number" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ApplicantCreditCheckScore">
+    <Key>
+      <PropertyRef Name="CreditCheckTransactionID" />
+    </Key>
+    <Property Name="CreditCheckTransactionID" Type="Int32" Nullable="false" />
+    <Property Name="ApplicantID" Type="Int32" />
+    <Property Name="CreditCheckProviderID" Type="Int32" />
+    <Property Name="CreditScore" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="ApplicantID" Type="Int32" Nullable="false" />
+    <Property Name="DepositOffered" Type="Double" />
+    <Property Name="PropertyValue" Type="Double" />
+    <Property Name="Term" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CreditCheckProvider">
+    <Key>
+      <PropertyRef Name="CreditCheckProviderID" />
+    </Key>
+    <Property Name="CreditCheckProviderID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Path" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Loan">
+    <Key>
+      <PropertyRef Name="LoanID" />
+    </Key>
+    <Property Name="LoanID" Type="Int32" Nullable="false" />
+    <Property Name="LoanProvider" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Term" Type="Int32" />
+    <Property Name="BorrowingRate" Type="Double" />
+    <Property Name="MaxLoanAmount" Type="Double" />
+    <Property Name="LoanType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Role1" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

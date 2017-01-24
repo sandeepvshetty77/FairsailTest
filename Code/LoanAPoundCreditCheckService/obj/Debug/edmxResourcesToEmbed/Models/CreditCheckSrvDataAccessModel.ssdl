@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LoanAPoundModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LoanAPoundModelStoreContainer">
+    <EntitySet Name="Applicants" EntityType="LoanAPoundModel.Store.Applicants" store:Type="Tables" />
+    <EntitySet Name="ApplicantCreditCheckScores" EntityType="LoanAPoundModel.Store.ApplicantCreditCheckScores" store:Type="Tables" />
+    <EntitySet Name="Applications" EntityType="LoanAPoundModel.Store.Applications" store:Type="Tables" />
+    <EntitySet Name="CreditCheckProviders" EntityType="LoanAPoundModel.Store.CreditCheckProviders" store:Type="Tables" />
+    <EntitySet Name="Loans" EntityType="LoanAPoundModel.Store.Loans" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="LoanAPoundModel.Store.Roles" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="LoanAPoundModel.Store.Users" store:Type="Tables" />
+  </EntityContainer>
+  <EntityType Name="Applicants">
+    <Key>
+      <PropertyRef Name="ApplicantID" />
+    </Key>
+    <Property Name="ApplicantID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicantFirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ApplicantLastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="AnnualSalary" Type="float" Nullable="false" />
+    <Property Name="NI_Number" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ApplicantCreditCheckScores">
+    <Key>
+      <PropertyRef Name="CreditCheckTransactionID" />
+    </Key>
+    <Property Name="CreditCheckTransactionID" Type="int" Nullable="false" />
+    <Property Name="ApplicantID" Type="int" />
+    <Property Name="CreditCheckProviderID" Type="int" />
+    <Property Name="CreditScore" Type="int" />
+  </EntityType>
+  <EntityType Name="Applications">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="ApplicantID" Type="int" Nullable="false" />
+    <Property Name="DepositOffered" Type="float" />
+    <Property Name="PropertyValue" Type="float" />
+    <Property Name="Term" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="CreditCheckProviders">
+    <Key>
+      <PropertyRef Name="CreditCheckProviderID" />
+    </Key>
+    <Property Name="CreditCheckProviderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Loans">
+    <Key>
+      <PropertyRef Name="LoanID" />
+    </Key>
+    <Property Name="LoanID" Type="int" Nullable="false" />
+    <Property Name="LoanProvider" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Term" Type="int" />
+    <Property Name="BorrowingRate" Type="float" />
+    <Property Name="MaxLoanAmount" Type="float" />
+    <Property Name="LoanType" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+</Schema>
